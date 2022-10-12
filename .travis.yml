@@ -1,3 +1,7 @@
 language: ruby
 rvm:
   - '3.1.2'
+script:
+  - "bundle exec make install"
+  - "bundle exec make lint"
+  - "bundle exec make test"
