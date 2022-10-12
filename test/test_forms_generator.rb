@@ -3,11 +3,13 @@
 require "test_helper"
 
 class TestFormsGenerator < Minitest::Test
+  User = Struct.new(:name, :job, keyword_init: true)
+
   def test_that_it_has_a_version_number
     refute_nil ::FormsGenerator::VERSION
   end
 
-  def test_it_does_something_useful
+  def test_tag_build
     assert_equal ::FormsGenerator::Tag.build("br"), "<br>"
     assert_equal ::FormsGenerator::Tag.build("img", src: "path/to/image"), "<img src=\"path/to/image\">"
     assert_equal ::FormsGenerator::Tag.build("input", type: "submit", value: "Save"),
@@ -17,5 +19,27 @@ class TestFormsGenerator < Minitest::Test
                    "Email"
                  }, "<label for=\"email\">Email</label>"
     assert_equal ::FormsGenerator::Tag.build("div") {}, "<div></div>"
+  end
+
+  def test_forms_generator_form_without_url
+    user = User.new name: "rob"
+    form = "<form action=\"#\" method=\"post\"></form>"
+
+    result =
+      FormsGenerator.form_for user do |f|
+      end
+
+    assert_equal result, form
+  end
+
+  def test_forms_generator_form_with_url
+    user = User.new name: "rob"
+    form = "<form action=\"/users\" method=\"post\"></form>"
+
+    result =
+      FormsGenerator.form_for user, url: "/users" do |f|
+      end
+
+    assert_equal result, form
   end
 end
