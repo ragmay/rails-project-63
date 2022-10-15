@@ -11,6 +11,12 @@ module FormsGenerator
     "<form action=\"#{url[:url]}\" method=\"post\"></form>"
   end
 
-  User = Struct.new(:name, :job, keyword_init: true)
-  User.new name: "rob"
+  User = Struct.new(:name, :job, :gender, keyword_init: true)
+  user = User.new name: "rob", job: "hexlet", gender: "m"
+
+  form =
+    FormsGenerator.form_for user, url: "/users" do |f|
+    end
+
+  puts form
 end
