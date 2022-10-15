@@ -1,6 +1,8 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/ragmay/rails-project-63/workflows/hexlet-check/badge.svg)](https://github.com/ragmay/rails-project-63/actions)
 
+[![CI](https://github.com/ragmay/rails-project-63/actions/workflows/master.yml/badge.svg)](https://github.com/ragmay/rails-project-63/actions/workflows/master.yml)
+
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-community-brightgreen.svg)](https://rubystyle.guide)
