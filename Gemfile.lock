@@ -10,9 +10,13 @@ GEM
     byebug (11.1.3)
     json (2.6.2)
     minitest (5.16.3)
+    minitest-power_assert (0.3.1)
+      minitest
+      power_assert (>= 1.1)
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
+    power_assert (2.0.1)
     rainbow (3.1.1)
     rake (13.0.6)
     regexp_parser (2.6.0)
@@ -29,6 +33,8 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.21.0)
       parser (>= 3.1.1.0)
+    rubocop-minitest (0.22.2)
+      rubocop (>= 0.90, < 2.0)
     ruby-progressbar (1.11.0)
     unicode-display_width (2.3.0)
 
@@ -39,8 +45,10 @@ DEPENDENCIES
   byebug
   forms_generator!
   minitest (~> 5.0)
+  minitest-power_assert
   rake (~> 13.0)
   rubocop (~> 1.21)
+  rubocop-minitest
 
 BUNDLED WITH
    2.3.21

@@ -11,6 +11,8 @@ module FormsGenerator
     "<form action=\"#{url[:url]}\" method=\"post\"></form>"
   end
 
+  def self.input(user); end
+
   User = Struct.new(:name, :job, :gender, keyword_init: true)
   user = User.new name: "rob", job: "hexlet", gender: "m"
 
