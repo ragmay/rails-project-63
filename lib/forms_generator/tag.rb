@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module FormsGenerator
+  # class containing method of build tags
   class Tag
     attr_reader :name_tag, :attributes_tag, :result_block
 

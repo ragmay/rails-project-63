@@ -18,7 +18,7 @@ class TestFormsGenerator < Minitest::Test
     assert_equal ::FormsGenerator::Tag.build("label", for: "email") {
                    "Email"
                  }, "<label for=\"email\">Email</label>"
-    assert_equal ::FormsGenerator::Tag.build("div") {}, "<div></div>"
+    assert_equal ::FormsGenerator::Tag.build("div"), "<div>"
   end
 
   def test_forms_generator_form_without_url
@@ -26,8 +26,7 @@ class TestFormsGenerator < Minitest::Test
     form = "<form action=\"#\" method=\"post\"></form>"
 
     result =
-      FormsGenerator.form_for user do |f|
-      end
+      FormsGenerator.form_for user
 
     assert_equal result, form
   end
@@ -37,8 +36,7 @@ class TestFormsGenerator < Minitest::Test
     form = "<form action=\"/users\" method=\"post\"></form>"
 
     result =
-      FormsGenerator.form_for user, url: "/users" do |f|
-      end
+      FormsGenerator.form_for user, url: "/users"
 
     assert_equal result, form
   end

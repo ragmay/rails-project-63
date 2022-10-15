@@ -2,6 +2,7 @@
 
 require_relative "forms_generator/version"
 
+# module for generation forms
 module FormsGenerator
   class Error < StandardError; end
   autoload "Tag", "forms_generator/tag"
@@ -18,6 +19,8 @@ module FormsGenerator
 
   form =
     FormsGenerator.form_for user, url: "/users" do |f|
+      f.input
+      f.input :job, as: :text
     end
 
   puts form
