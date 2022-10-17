@@ -44,8 +44,7 @@ class TestFormsGenerator < Minitest::Test
   def test_forms_generator_form_with_fields1
     user = User.new name: "rob", job: "hexlet", gender: "m"
 
-    form =
-      "<form action=\"/users\" method=\"post\">\
+    form = "<form action=\"/users\" method=\"post\">\
 <input name=\"name\" type=\"text\" value=\"rob\">\
 <textarea name=\"job\" cols=\"20\" rows=\"40\">hexlet</textarea>\
 </form>"
@@ -62,8 +61,7 @@ class TestFormsGenerator < Minitest::Test
   def test_forms_generator_form_with_fields2
     user = User.new name: "rob", job: "hexlet", gender: "m"
 
-    form =
-      "<form action=\"#\" method=\"post\">\
+    form = "<form action=\"#\" method=\"post\">\
 <input class=\"user-input\" name=\"name\" type=\"text\" value=\"rob\">\
 <input name=\"job\" type=\"text\" value=\"hexlet\">\
 </form>"
@@ -80,8 +78,7 @@ class TestFormsGenerator < Minitest::Test
   def test_forms_generator_form_with_fields3
     user = User.new name: "rob", job: "hexlet", gender: "m"
 
-    form =
-      "<form action=\"#\" method=\"post\">\
+    form = "<form action=\"#\" method=\"post\">\
 <textarea name=\"job\" cols=\"50\" rows=\"50\">hexlet</textarea>\
 </form>"
 
