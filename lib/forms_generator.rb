@@ -14,18 +14,28 @@ module FormsGenerator
     Tag.build("form", action: url[:url] || "#", method: url[:method] || "post") { @field_generation }
   end
 
+  def self.label(field)
+    Tag.build("label", for: field) { field.capitalize }
+  end
+
   def self.input(field, **attributes_field)
     attributes_field[:name] = field
     if attributes_field[:as] == :text
       attributes_field.delete(:as)
+      @field_generation += label(field)
       @field_generation += Tag.build("textarea", name: field, cols: attributes_field[:cols] || "20",
                                                  rows: attributes_field[:rows] || "40", **attributes_field) do
         @user_structure.public_send(field)
       end
     else
+      @field_generation += label(field)
       @field_generation += Tag.build("input", **attributes_field, type: "text",
                                                                   value: @user_structure.public_send(field))
     end
+  end
+
+  def self.submit(text_of_button = "Save")
+    @field_generation += Tag.build("input", type: "submit", value: text_of_button)
   end
 
   User = Struct.new(:name, :job, :gender, keyword_init: true)
@@ -59,4 +69,16 @@ module FormsGenerator
   #   f.input :job, as: :text
   #   f.input :age
   # end
+
+  FormsGenerator.form_for user do |f|
+    f.input :name
+    f.input :job
+    f.submit
+  end
+
+  FormsGenerator.form_for user, url: "#" do |f|
+    f.input :name
+    f.input :job
+    f.submit "Wow"
+  end
 end

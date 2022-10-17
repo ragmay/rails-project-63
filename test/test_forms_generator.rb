@@ -41,50 +41,91 @@ class TestFormsGenerator < Minitest::Test
     assert_equal result, form
   end
 
-  def test_forms_generator_form_with_fields1
-    user = User.new name: "rob", job: "hexlet", gender: "m"
+  #   def test_forms_generator_form_with_fields1
+  #     user = User.new name: "rob", job: "hexlet", gender: "m"
 
-    form = "<form action=\"/users\" method=\"post\">\
-<input name=\"name\" type=\"text\" value=\"rob\">\
-<textarea name=\"job\" cols=\"20\" rows=\"40\">hexlet</textarea>\
-</form>"
+  #     form = "<form action=\"/users\" method=\"post\">\
+  # <input name=\"name\" type=\"text\" value=\"rob\">\
+  # <textarea name=\"job\" cols=\"20\" rows=\"40\">hexlet</textarea>\
+  # </form>"
 
-    result =
-      FormsGenerator.form_for user, url: "/users" do |f|
-        f.input :name
-        f.input :job, as: :text
-      end
+  #     result =
+  #       FormsGenerator.form_for user, url: "/users" do |f|
+  #         f.input :name
+  #         f.input :job, as: :text
+  #       end
 
-    assert_equal result, form
-  end
+  #     assert_equal result, form
+  #   end
 
-  def test_forms_generator_form_with_fields2
-    user = User.new name: "rob", job: "hexlet", gender: "m"
+  #   def test_forms_generator_form_with_fields2
+  #     user = User.new name: "rob", job: "hexlet", gender: "m"
+
+  #     form = "<form action=\"#\" method=\"post\">\
+  # <input class=\"user-input\" name=\"name\" type=\"text\" value=\"rob\">\
+  # <input name=\"job\" type=\"text\" value=\"hexlet\">\
+  # </form>"
+
+  #     result =
+  #       FormsGenerator.form_for user, url: "#" do |f|
+  #         f.input :name, class: "user-input"
+  #         f.input :job
+  #       end
+
+  #     assert_equal result, form
+  #   end
+
+  #   def test_forms_generator_form_with_fields3
+  #     user = User.new name: "rob", job: "hexlet", gender: "m"
+
+  #     form = "<form action=\"#\" method=\"post\">\
+  # <textarea name=\"job\" cols=\"50\" rows=\"50\">hexlet</textarea>\
+  # </form>"
+
+  #     result =
+  #       FormsGenerator.form_for user, url: "#" do |f|
+  #         f.input :job, as: :text, rows: 50, cols: 50
+  #       end
+
+  #     assert_equal result, form
+  #   end
+
+  def test_forms_generator_form_with_button_and_label1
+    user = User.new job: "hexlet"
 
     form = "<form action=\"#\" method=\"post\">\
-<input class=\"user-input\" name=\"name\" type=\"text\" value=\"rob\">\
+<label for=\"name\">Name</label>\
+<input name=\"name\" type=\"text\" value=\"\">\
+<label for=\"job\">Job</label>\
 <input name=\"job\" type=\"text\" value=\"hexlet\">\
+<input type=\"submit\" value=\"Save\">\
 </form>"
 
     result =
-      FormsGenerator.form_for user, url: "#" do |f|
-        f.input :name, class: "user-input"
+      FormsGenerator.form_for user do |f|
+        f.input :name
         f.input :job
+        f.submit
       end
 
     assert_equal result, form
   end
 
-  def test_forms_generator_form_with_fields3
-    user = User.new name: "rob", job: "hexlet", gender: "m"
+  def test_forms_generator_form_with_button_and_label2
+    user = User.new job: "hexlet"
 
     form = "<form action=\"#\" method=\"post\">\
-<textarea name=\"job\" cols=\"50\" rows=\"50\">hexlet</textarea>\
-</form>"
+<label for=\"name\">Name</label>\
+<input name=\"name\" type=\"text\" value=\"\">\
+<label for=\"job\">Job</label>\
+<input name=\"job\" type=\"text\" value=\"hexlet\">\
+<input type=\"submit\" value=\"Wow\"></form>"
 
     result =
       FormsGenerator.form_for user, url: "#" do |f|
-        f.input :job, as: :text, rows: 50, cols: 50
+        f.input :name
+        f.input :job
+        f.submit "Wow"
       end
 
     assert_equal result, form
