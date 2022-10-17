@@ -54,9 +54,9 @@ module FormsGenerator
     f.input :job, as: :text, rows: 50, cols: 50
   end
 
-  FormsGenerator.form_for user, url: "/users" do |f|
-    f.input :name
-    f.input :job, as: :text
-    f.input :age
-  end
+  # FormsGenerator.form_for user, url: "/users" do |f|
+  #   f.input :name
+  #   f.input :job, as: :text
+  #   f.input :age
+  # end
 end

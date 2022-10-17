@@ -11,7 +11,6 @@
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/forms_generator`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -25,7 +24,56 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+  User = Struct.new(:name, :job, :gender, keyword_init: true)
+  user = User.new name: "rob", job: "hexlet", gender: "m"
+
+  FormsGenerator.form_for user, url: "/users" do |f|
+    f.input :name
+    f.input :job, as: :text
+  end
+
+# <form action=\"/users\" method=\"post\">
+#   <input name=\"name\" type=\"text\" value=\"rob\">
+#   <textarea name=\"job\" cols=\"20\" rows=\"40\">hexlet</textarea>
+# </form>
+
+  FormsGenerator.form_for user do |f|
+    f.input :name
+    f.input :job, as: :text
+  end
+
+# <form action=\"#\" method=\"post\">
+#   <input name=\"name\" type=\"text\" value=\"rob\">
+#   <textarea name=\"job\" cols=\"20\" rows=\"40\">hexlet</textarea>
+# </form>
+
+  FormsGenerator.form_for user, url: "#" do |f|
+    f.input :name, class: "user-input"
+    f.input :job
+  end
+
+#  <form action=\"#\" method=\"post\">
+#    <input class=\"user-input\" name=\"name\" type=\"text\" value=\"rob\">
+#    <input name=\"job\" type=\"text\" value=\"hexlet\">
+#  </form>
+
+  FormsGenerator.form_for user do |f|
+    f.input :job, as: :text
+  end
+
+#  <form action=\"#\" method=\"post\">
+#    <textarea name=\"job\" cols=\"20\" rows=\"40\">hexlet</textarea>
+#  </form>
+
+  FormsGenerator.form_for user, url: "#" do |f|
+    f.input :job, as: :text, rows: 50, cols: 50
+  end
+
+#  <form action=\"#\" method=\"post\">
+#    <textarea name=\"job\" cols=\"50\" rows=\"50\">hexlet</textarea>
+#  </form>
+```
 
 ## Development
 
