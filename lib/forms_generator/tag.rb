@@ -3,14 +3,6 @@
 module FormsGenerator
   # class containing method of build tags
   class Tag
-    attr_reader :name_tag, :attributes_tag, :result_block
-
-    def initialize
-      @name_tag = name_tag
-      @attributes_tag = attributes_tag
-      @result_block = result_block
-    end
-
     def self.build(name_tag, **attributes_tag)
       attributes = attributes_tag.map { |key, value| " #{key}=\"#{value}\"" }.reject(&:empty?).join
       if block_given?
